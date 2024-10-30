@@ -1,36 +1,64 @@
 const validateFieldStatus = (req, res, next) => {
-    const { status } = req.body;
-    const validStatuses = ['pendente', 'confirmado', 'cancelado'];
+    const { id_status } = req.body; 
+    const validStatuses = [1, 2, 3]; 
 
-    if (status && !validStatuses.includes(status)) {
-        return res.status(400).json({ message: `O campo "status" deve ser um dos seguintes: ${validStatuses.join(', ')}` });
+   
+    if (id_status === undefined || id_status === null || id_status === '') {
+        return res.status(400).json({ message: 'O campo "id_status" é obrigatório.' });
     }
 
-    next();
+
+    if (!validStatuses.includes(id_status)) {
+        return res.status(400).json({ message: `O campo "id_status" deve ser um dos seguintes (1: 'pendente', 2: 'confirmado', 3: 'cancelado')`});
+    }
+
+    next(); 
 };
 
 const validateFieldProduct = (req, res, next) => {
-    const { product } = req.body;
+    const { id_usuario, produtos, valor_total, id_status } = req.body;
+    const errors = [];
 
-    if (!product || typeof product !== 'string' || product.trim() === '') {
-        return res.status(400).json({ message: 'O campo "product" é obrigatório e deve ser uma string válida.' });
+  
+    if (!id_usuario || typeof id_usuario !== 'number' || id_usuario <= 0) {
+        errors.push('O campo "id_usuario" é obrigatório e deve ser um número maior que 0.');
     }
+
+
+    if (!Array.isArray(produtos) || produtos.length === 0) {
+        errors.push('O campo "produtos" é obrigatório e deve ser uma lista com pelo menos um produto.');
+    } else {
+        produtos.forEach((produto, index) => {
+           
+            if (produto.codigo_produto === undefined || typeof produto.codigo_produto !== 'number' || produto.codigo_produto <= 0) {
+                errors.push(`O campo "codigo_produto" é obrigatório e deve ser um número válido no item ${index + 1}.`);
+            }
+            if (produto.quantidade === undefined || typeof produto.quantidade !== 'number' || produto.quantidade <= 0) {
+                errors.push(`O campo "quantidade" é obrigatório e deve ser um número maior que 0 no item ${index + 1}.`);
+            }
+        });
+    }
+
+    
+    if (valor_total === undefined || typeof valor_total !== 'number' || valor_total <= 0) {
+        errors.push('O campo "valor_total" é obrigatório e deve ser um número maior que 0.');
+    }
+
+    
+    if (id_status !== undefined && (typeof id_status !== 'number' || id_status <= 0)) {
+        errors.push('O campo "id_status" deve ser um número maior que 0, se fornecido.');
+    }
+
+        if (errors.length > 0) {
+            return res.status(400).json({ message: 'Erro de validação', errors });
+        }
 
     next();
 };
 
-const validateFieldQuantity = (req, res, next) => {
-    const { quantity } = req.body;
-
-    if (quantity === undefined || typeof quantity !== 'number' || quantity <= 0) {
-        return res.status(400).json({ message: 'O campo "quantity" é obrigatório e deve ser um número maior que 0.' });
-    }
-
-    next();
-};
 
 module.exports = {
     validateFieldStatus,
     validateFieldProduct,
-    validateFieldQuantity,
+    
 };

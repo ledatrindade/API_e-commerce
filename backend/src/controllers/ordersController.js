@@ -1,6 +1,6 @@
 const ordersModel = require('../models/ordersModel');
 
-// Função para buscar todos os pedidos
+
 const getAllOrders = async (_req, res) => {
     try {
         const orders = await ordersModel.getAllOrders();
@@ -10,7 +10,7 @@ const getAllOrders = async (_req, res) => {
     }
 };
 
-// Função para criar um pedido
+
 const createOrder = async (req, res) => {
     try {
         const newOrder = await ordersModel.createOrder(req.body);
@@ -20,7 +20,7 @@ const createOrder = async (req, res) => {
     }
 };
 
-// Função para buscar pedido por ID
+
 const getOrderById = async (req, res) => {
     const { id } = req.params;
     try {
@@ -34,7 +34,7 @@ const getOrderById = async (req, res) => {
     }
 };
 
-// Função para deletar pedido por ID
+
 const deleteOrder = async (req, res) => {
     const { id } = req.params;
     try {
@@ -49,8 +49,8 @@ const deleteOrder = async (req, res) => {
 };
 
 const updateOrderStatus = async (req, res) => {
-    const { id } = req.params; // Pega o ID do pedido
-    const { id_status } = req.body; // Pega o novo status do corpo da requisição
+    const { id } = req.params; 
+    const { id_status } = req.body; 
 
     const affectedRows = await ordersModel.updateOrderStatus(id, id_status);
 
@@ -61,7 +61,7 @@ const updateOrderStatus = async (req, res) => {
     return res.status(200).json({ message: 'Status do pedido atualizado com sucesso.' });
 };
 
-// Exporta as funções do controlador
+
 module.exports = {
     getAllOrders,
     createOrder,
