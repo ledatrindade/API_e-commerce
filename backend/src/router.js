@@ -3,6 +3,7 @@ const router = express.Router();
 const ordersController = require('./controllers/ordersController'); 
 const middleWare = require('./middlewares/ordersMiddleware');
 
+
 // Rota para buscar todos os pedidos
 router.get('/orders', ordersController.getAllOrders);
 
@@ -15,7 +16,8 @@ router.get('/orders/:id', ordersController.getOrderById);
 // Rota para atualizar o status de um pedido
 router.put('/orders/:id/status', middleWare.validateFieldStatus, ordersController.updateOrderStatus);
 
-// Rota para deletar pedido por ID
+// Rota para deletar pedido por ID 
 router.delete('/orders/:id', ordersController.deleteOrder);
+
 
 module.exports = router;
