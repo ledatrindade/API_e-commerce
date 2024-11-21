@@ -2,7 +2,13 @@ const express = require('express');
 const router = express.Router();
 const ordersController = require('./controllers/ordersController'); 
 const middleWare = require('./middlewares/ordersMiddleware');
+const productsController = require('./controllers/productsController');
 
+// Rota para listar todos os produtos
+router.get('/products', productsController.getAllProducts);
+
+// Rota para obter os detalhes de um produto específico
+router.get('/products/:id', productsController.getProductById);
 
 // Rota para buscar todos os pedidos
 router.get('/orders', ordersController.getAllOrders);
