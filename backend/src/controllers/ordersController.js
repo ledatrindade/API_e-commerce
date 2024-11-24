@@ -1,6 +1,5 @@
 const ordersModel = require('../models/ordersModel');
 
-
 const getAllOrders = async (_req, res) => {
     try {
         const orders = await ordersModel.getAllOrders();
@@ -10,7 +9,6 @@ const getAllOrders = async (_req, res) => {
     }
 };
 
-
 const createOrder = async (req, res) => {
     try {
         const newOrder = await ordersModel.createOrder(req.body);
@@ -19,7 +17,6 @@ const createOrder = async (req, res) => {
         return res.status(500).json({ message: 'Erro ao criar pedido.' });
     }
 };
-
 
 const getOrderById = async (req, res) => {
     const { id } = req.params;
@@ -34,7 +31,6 @@ const getOrderById = async (req, res) => {
     }
 };
 
-
 const deleteOrder = async (req, res) => {
     const { id } = req.params;
     try {
@@ -42,7 +38,7 @@ const deleteOrder = async (req, res) => {
         if (affectedRows === 0) {
             return res.status(404).json({ message: 'Pedido não encontrado.' });
         }
-        return res.status(204).send('Pedido deletado com sucesso.');
+        return res.status(204).send();
     } catch (error) {
         return res.status(500).json({ message: 'Erro ao deletar pedido.' });
     }
@@ -60,7 +56,6 @@ const updateOrderStatus = async (req, res) => {
 
     return res.status(200).json({ message: 'Status do pedido atualizado com sucesso.' });
 };
-
 
 module.exports = {
     getAllOrders,

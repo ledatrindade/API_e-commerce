@@ -2,11 +2,9 @@ const validateFieldStatus = (req, res, next) => {
     const { id_status } = req.body; 
     const validStatuses = [1, 2, 3]; 
 
-   
     if (id_status === undefined || id_status === null || id_status === '') {
         return res.status(400).json({ message: 'O campo "id_status" é obrigatório.' });
     }
-
 
     if (!validStatuses.includes(id_status)) {
         return res.status(400).json({ message: `O campo "id_status" deve ser um dos seguintes (1: 'pendente', 2: 'confirmado', 3: 'cancelado')`});
@@ -19,11 +17,9 @@ const validateFieldProduct = (req, res, next) => {
     const { id_usuario, produtos, valor_total, id_status } = req.body;
     const errors = [];
 
-  
     if (!id_usuario || typeof id_usuario !== 'number' || id_usuario <= 0) {
         errors.push('O campo "id_usuario" é obrigatório e deve ser um número maior que 0.');
     }
-
 
     if (!Array.isArray(produtos) || produtos.length === 0) {
         errors.push('O campo "produtos" é obrigatório e deve ser uma lista com pelo menos um produto.');
@@ -39,7 +35,6 @@ const validateFieldProduct = (req, res, next) => {
         });
     }
 
-    
     if (valor_total === undefined || typeof valor_total !== 'number' || valor_total <= 0) {
         errors.push('O campo "valor_total" é obrigatório e deve ser um número maior que 0.');
     }
@@ -55,7 +50,6 @@ const validateFieldProduct = (req, res, next) => {
 
     next();
 };
-
 
 module.exports = {
     validateFieldStatus,

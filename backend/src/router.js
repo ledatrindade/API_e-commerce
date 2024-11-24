@@ -1,29 +1,26 @@
 const express = require('express');
 const router = express.Router();
-const ordersController = require('./controllers/ordersController'); 
-const middleWare = require('./middlewares/ordersMiddleware');
 const productsController = require('./controllers/productsController');
+const ordersController = require('./controllers/ordersController');
+const authController = require('./controllers/authController');
+const ordersMiddleware = require('./middlewares/ordersMiddleware');
+const { authenticateToken, authorizeAdmin, validateRegisterFields, validateLoginFields } = require('./middlewares/authMiddleware');
 
-// Rota para listar todos os produtos
+// Rota de registro de usuário
+router.post('/register', validateRegisterFields, authController.registerUser);
+
+// Rota de login de usuário
+router.post('/login', validateLoginFields, authController.loginUser);
+
+// Rotas de produtos
 router.get('/products', productsController.getAllProducts);
-
-// Rota para obter os detalhes de um produto específico
 router.get('/products/:id', productsController.getProductById);
 
-// Rota para buscar todos os pedidos
-router.get('/orders', ordersController.getAllOrders);
-
-// Rota para criar um pedido
-router.post('/orders', middleWare.validateFieldProduct, ordersController.createOrder);
-
-// Rota para buscar pedido por ID
-router.get('/orders/:id', ordersController.getOrderById);
-
-// Rota para atualizar o status de um pedido
-router.put('/orders/:id/status', middleWare.validateFieldStatus, ordersController.updateOrderStatus);
-
-// Rota para deletar pedido por ID 
-router.delete('/orders/:id', ordersController.deleteOrder);
-
+// Rotas de pedidos (admin somente onde indicado)
+router.get('/orders', authenticateToken, authorizeAdmin, ordersController.getAllOrders);
+router.post('/orders', authenticateToken, ordersMiddleware.validateFieldProduct, ordersController.createOrder);
+router.get('/orders/:id', authenticateToken, ordersController.getOrderById);
+router.put('/orders/:id/status', authenticateToken, authorizeAdmin, ordersMiddleware.validateFieldStatus, ordersController.updateOrderStatus);
+router.delete('/orders/:id', authenticateToken, authorizeAdmin, ordersController.deleteOrder);
 
 module.exports = router;
