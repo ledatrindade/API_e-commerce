@@ -46,7 +46,7 @@ npm install
 
 ### 3. Configure o banco de dados
 
-Crie um banco de dados MySQL. Execute o script SQL fornecido em scripts/db.sql para criar as tabelas necessárias. Atualize o arquivo .env com as informações do seu banco de dados:
+Crie um banco de dados MySQL. Execute o script SQL fornecido na pasta scripts, no arquivo db.sql, para criar as tabelas necessárias. Atualize o arquivo .env.example com as informações do seu banco de dados:
 
 ```bash
 DB_HOST=localhost
