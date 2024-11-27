@@ -7,7 +7,7 @@ const validateFieldStatus = (req, res, next) => {
     }
 
     if (!validStatuses.includes(id_status)) {
-        return res.status(400).json({ message: `O campo "id_status" deve ser um dos seguintes (1: 'pendente', 2: 'confirmado', 3: 'cancelado')`});
+        return res.status(400).json({ message: `O campo "id_status" deve ser um dos seguintes (1: 'pendente', 2: 'enviado', 3: 'entregue')`});
     }
 
     next(); 

@@ -9,15 +9,19 @@ const getAllOrders = async (_req, res) => {
     }
 };
 
-const createOrder = async (req, res) => {
+const createOrder = async (req, res) => { 
     try {
         const newOrder = await ordersModel.createOrder(req.body);
         return res.status(201).json(newOrder);
     } catch (error) {
+        // Verifica se o erro é de estoque insuficiente
+        if (error.message.startsWith('Estoque insuficiente')) {
+            return res.status(400).json({ message: error.message }); // Retorna erro específico
+        }
+        // Retorna mensagem genérica para outros erros
         return res.status(500).json({ message: 'Erro ao criar pedido.' });
     }
 };
-
 const getOrderById = async (req, res) => {
     const { id } = req.params;
     try {
@@ -26,6 +30,7 @@ const getOrderById = async (req, res) => {
             return res.status(404).json({ message: 'Pedido não encontrado.' });
         }
         return res.status(200).json(order);
+        
     } catch (error) {
         return res.status(500).json({ message: 'Erro ao buscar pedido.' });
     }
