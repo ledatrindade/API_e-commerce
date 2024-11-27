@@ -50,10 +50,10 @@ Crie um banco de dados MySQL. Execute o script SQL fornecido em scripts/db.sql p
 
 ```bash
 DB_HOST=localhost
-DB_USER=seu_usuario
-DB_PASSWORD=sua_senha
-DB_NAME=nome_do_banco
-JWT_SECRET=sua_chave_secreta
+DB_USER=root  #usuário padrão
+DB_PASSWORD=sua_senha  #definida durante a instalação do MySQL 
+DB_NAME=nome_do_banco  #nome escolhido para o banco de dados
+JWT_SECRET=sua_chave_secreta  #obtido durante a execução da API
 ```
 
 ### 4. Inicie o servidor

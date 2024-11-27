@@ -24,3 +24,4 @@ router.put('/orders/:id/status', authenticateToken, authorizeAdmin, ordersMiddle
 router.delete('/orders/:id', authenticateToken, authorizeAdmin, ordersController.deleteOrder);
 
 module.exports = router;
+
