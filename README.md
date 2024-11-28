@@ -58,11 +58,12 @@ docker run --name mysql -e MYSQL_ROOT_PASSWORD= _senha_ -p 3333:3333 -d mysql:5.
 Crie um banco de dados MySQL na extensão Database Client. Execute o script SQL fornecido na pasta scripts, no arquivo db.sql, para criar as tabelas necessárias. Atualize o arquivo .env.example com as informações do seu banco de dados:
 
 ```bash
-DB_HOST=localhost
-DB_USER=root  #usuário padrão
-DB_PASSWORD=sua_senha  #definida durante a instalação do MySQL 
-DB_NAME=nome_do_banco  #nome escolhido para o banco de dados
-JWT_SECRET=sua_chave_secreta  #obtido durante a execução da API
+DB_HOST=localhost  # Endereço do servidor do banco de dados
+DB_USER=root  # usuário padrão
+DB_PASSWORD=sua_senha  # definida durante a instalação do MySQL
+DB_NAME=nome_do_banco  # nome escolhido para o banco de dados
+JWT_SECRET=sua_chave_secreta  # chave secreta usada para tokens JWT
+PORT=3333  # porta do servidor
 ```
 
 ### 5. Inicie o servidor

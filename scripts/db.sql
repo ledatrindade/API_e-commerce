@@ -15,9 +15,9 @@ CREATE TABLE usuario (
 CREATE TABLE status (
     id_status INT PRIMARY KEY AUTO_INCREMENT,
     descricao VARCHAR(100) NOT NULL,
-    data_criacao DATE DEFAULT CURRENT_DATE,
-    data_atualizacao DATE DEFAULT NULL,
-    ativo BOOLEAN DEFAULT TRUE
+    data_criacao DATE  ,
+    data_atualizacao DATE  NULL,
+    ativo BOOLEAN 
 );
 
 -- Tabela pedido
@@ -25,7 +25,7 @@ CREATE TABLE pedido (
     numero_pedido INT PRIMARY KEY AUTO_INCREMENT,
     id_usuario INT,
     valor_total DECIMAL(10,2) NOT NULL,
-    data DATE NOT NULL DEFAULT CURRENT_DATE,
+    data DATE NOT NULL ,
     id_status INT,
     FOREIGN KEY (id_usuario) REFERENCES usuario(id) ON DELETE CASCADE,
     FOREIGN KEY (id_status) REFERENCES status(id_status) ON DELETE SET NULL
@@ -61,9 +61,10 @@ CREATE TABLE pedido_produto (
 
 -- Visualizações das tabelas criadas
 select * from usuario;
-select * from tipo_usuario ;
 select*from status;
 select*from pedido;
 select*from produto;
 select*from variacao;
 select*from pedido_produto;
+
+
