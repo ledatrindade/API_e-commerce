@@ -90,7 +90,7 @@ _Obs.: Caso não tenha o campo "tipo_usuario" no momento de cadastrar um novo us
 https://github.com/user-attachments/assets/66aacf03-abeb-4ae7-9f33-e3f77084a817
 
 
-### [GET] - /products: Retorna uma lista de todos os produtos disponíveis. e /products/{id}: Retorna os detalhes de um produto específico.
+### [GET] - /products: Retorna uma lista de todos os produtos disponíveis. e [GET] - /products/{id}: Retorna os detalhes de um produto específico.
 
 https://github.com/user-attachments/assets/c7bad5cd-6398-4dbd-8b14-69d8ba2a4e19
 
