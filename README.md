@@ -76,3 +76,49 @@ Lembre-se de inicar o servidor na pasta correta. _Pasta: Back-end_
 
 O servidor estará disponível em http://localhost:3333
 
+--
+### Iniciando o servidor, mostrando a imagem do MYSql e o banco de dados Commerce
+https://github.com/user-attachments/assets/1fedfb34-8e8a-4964-9d1a-35413eb385d1
+
+### [POST] - /register: Cadastrar usuários novos 
+https://github.com/user-attachments/assets/3fcf4c0c-29e0-4a66-a538-b681f2ecdae8
+
+_Obs.: Caso não tenha o campo "tipo_usuario" no momento de cadastrar um novo usuário é colocado automaticamente como "Cliente"._
+--
+
+### [POST] - /login: Logar com um usuário já cadastrado no banco de dados criando assim um Token de acesso.
+https://github.com/user-attachments/assets/66aacf03-abeb-4ae7-9f33-e3f77084a817
+
+
+### [GET] - /products: Retorna uma lista de todos os produtos disponíveis. e /products/{id}: Retorna os detalhes de um produto específico.
+
+https://github.com/user-attachments/assets/c7bad5cd-6398-4dbd-8b14-69d8ba2a4e19
+
+
+### [POST] - /orders: Cria um novo pedido com base nos itens do carrinho.
+https://github.com/user-attachments/assets/ab85031d-7563-4476-8ba6-7a9e9fcea6c7
+
+
+### [GET] - /orders/{id}: Retorna os detalhes de um pedido específico.
+https://github.com/user-attachments/assets/e54095a5-6736-4fbc-964d-d322c76c47f1
+
+
+### [GET] - /orders: Retorna uma lista de pedidos (admin).
+https://github.com/user-attachments/assets/a1f18e1d-7b22-474d-81c4-d21d7851e452
+
+
+### [PUT] - /orders/{id}/status: Atualiza o status de um pedido (admin).
+https://github.com/user-attachments/assets/d057dc35-fd87-43f8-9af0-44751b4bf6ba
+
+
+### [DELETE] - /orders/{id}: Cancela um pedido (admin).
+https://github.com/user-attachments/assets/7c728f50-3acf-4316-a35f-e8413e266415
+
+
+
+
+
+
+
+
+
